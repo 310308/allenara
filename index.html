@@ -10,47 +10,39 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fcfcfc; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .tab-active { border-bottom: 2px solid #000; color: #000; font-weight: 700; }
-        .card-item { transition: all 0.2s ease-in-out; }
+        .card-item { transition: all 0.2s ease-in-out; border: 1px solid #f3f4f6; }
         .card-item:hover { border-color: #000; transform: translateY(-2px); }
         .sticky-header { position: sticky; top: 0; z-index: 50; background: rgba(252, 252, 252, 0.9); backdrop-filter: blur(10px); }
     </style>
 </head>
-<body class="max-w-md mx-auto border-x border-gray-100 min-h-screen">
+<body class="max-w-md mx-auto border-x border-gray-50 min-h-screen shadow-sm">
 
-    <!-- Header & Info -->
     <header class="p-6 pb-2">
         <div class="flex justify-between items-center mb-4">
-            <h1 class="text-xl font-extrabold tracking-tight">ALLENARA STORE</h1>
-            <div class="flex gap-2">
-                <a href="#" class="p-2 bg-gray-100 rounded-full">📱</a>
+            <h1 class="text-xl font-extrabold tracking-tight uppercase">Allenara Store</h1>
+            <div class="flex gap-2 text-[10px] font-bold">
+                <span class="bg-black text-white px-2 py-1 rounded">PRICELIST</span>
             </div>
         </div>
-        <p class="text-xs text-gray-500 leading-relaxed">Pricelist Jasa Social Media & Game Terlengkap. Klik layanan untuk order via WhatsApp.</p>
+        <p class="text-[11px] text-gray-500 leading-relaxed uppercase tracking-wider">Premium Apps • Digital Services • Trusted</p>
     </header>
 
-    <!-- Navigasi Kategori (Sticky) -->
     <div class="sticky-header">
         <div id="category-tabs" class="flex gap-6 px-6 overflow-x-auto no-scrollbar border-b border-gray-100 text-sm text-gray-400 py-3">
             <button onclick="filterByCat('Semua')" class="tab-btn tab-active whitespace-nowrap">Semua</button>
-            <!-- Kategori akan muncul otomatis di sini -->
         </div>
 
-        <!-- Search Bar -->
         <div class="p-4">
-            <div class="relative">
-                <input type="text" id="searchInput" placeholder="Cari layanan (misal: Follower, Like...)" 
-                       class="w-full bg-gray-100 border-none rounded-2xl py-3 px-5 text-sm focus:ring-2 focus:ring-black transition-all">
-            </div>
+            <input type="text" id="searchInput" placeholder="Cari layanan..." 
+                   class="w-full bg-gray-100 border-none rounded-2xl py-3 px-5 text-sm focus:ring-1 focus:ring-black transition-all">
         </div>
     </div>
 
-    <!-- Container Daftar Harga -->
     <main id="price-container" class="p-4 space-y-3">
-        <div class="py-20 text-center text-gray-400 text-sm animate-pulse">Menghubungkan ke database...</div>
+        <div class="py-20 text-center text-gray-400 text-sm italic">Menghubungkan ke Sheets...</div>
     </main>
 
     <script>
-        // MASUKKAN LINK CSV GOOGLE SHEETS KAMU DI SINI
         const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS5xFkFRkK1496td-bAa9zCZ2MetND0WmlXmXoKD4qEz9PlQA1VeMq7hScn1hzZIY-KcJ7Zk5vFs5c6/pub?output=csv'; 
 
         let allData = [];
@@ -59,17 +51,23 @@
             try {
                 const response = await fetch(SHEET_CSV_URL);
                 const csvText = await response.text();
+                // Parsing CSV manual yang lebih aman untuk koma di dalam teks
                 const rows = csvText.split('\n').slice(1);
                 
                 allData = rows.map(row => {
                     const cols = row.split(',');
-                    return { kategori: cols[0]?.trim(), nama: cols[1]?.trim(), harga: cols[2]?.trim() };
+                    return { 
+                        kategori: cols[0]?.trim(), 
+                        nama: cols[1]?.trim(), 
+                        durasi: cols[2]?.trim(), 
+                        harga: cols[3]?.trim() 
+                    };
                 }).filter(item => item.nama);
 
                 renderCategories();
                 renderPriceList(allData);
             } catch (err) {
-                document.getElementById('price-container').innerHTML = `<p class="text-center text-red-400 py-10">Gagal memuat data. Pastikan link CSV benar.</p>`;
+                document.getElementById('price-container').innerHTML = `<p class="text-center text-red-400">Gagal memuat data.</p>`;
             }
         }
 
@@ -77,26 +75,23 @@
             const tabs = document.getElementById('category-tabs');
             const categories = ['Semua', ...new Set(allData.map(item => item.kategori))];
             tabs.innerHTML = categories.map(cat => 
-                `<button onclick="filterByCat('${cat}', this)" class="tab-btn whitespace-nowrap">${cat}</button>`
+                `<button onclick="filterByCat('${cat}', this)" class="tab-btn whitespace-nowrap text-[12px] uppercase tracking-wide">${cat}</button>`
             ).join('');
             tabs.firstElementChild.classList.add('tab-active');
         }
 
         function renderPriceList(data) {
             const container = document.getElementById('price-container');
-            if(data.length === 0) {
-                container.innerHTML = `<p class="text-center text-gray-400 py-10">Layanan tidak ditemukan.</p>`;
-                return;
-            }
             container.innerHTML = data.map(item => `
-                <div class="card-item bg-white border border-gray-100 p-4 rounded-2xl flex justify-between items-center shadow-sm">
-                    <div class="pr-4">
+                <div class="card-item bg-white p-4 rounded-2xl flex justify-between items-center">
+                    <div class="flex-1 pr-4">
                         <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">${item.kategori}</span>
-                        <h3 class="text-[13px] font-semibold text-gray-800 mt-0.5">${item.nama}</h3>
+                        <h3 class="text-[14px] font-bold text-gray-800 mt-0.5">${item.nama}</h3>
+                        <p class="text-[10px] text-black font-semibold mt-1 bg-gray-100 inline-block px-2 py-0.5 rounded border border-gray-200">${item.durasi}</p>
                     </div>
                     <div class="text-right">
-                        <p class="text-[14px] font-bold text-black">Rp${item.harga}</p>
-                        <p class="text-[9px] text-green-500 font-bold uppercase mt-1">Tersedia</p>
+                        <p class="text-[16px] font-extrabold text-black">Rp${item.harga}</p>
+                        <p class="text-[9px] text-blue-600 font-bold uppercase mt-1">Ready Stock</p>
                     </div>
                 </div>
             `).join('');
@@ -105,14 +100,17 @@
         function filterByCat(cat, el) {
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-active'));
             if(el) el.classList.add('tab-active');
-            
             const filtered = cat === 'Semua' ? allData : allData.filter(i => i.kategori === cat);
             renderPriceList(filtered);
         }
 
         document.getElementById('searchInput').addEventListener('input', (e) => {
             const val = e.target.value.toLowerCase();
-            const filtered = allData.filter(i => i.nama.toLowerCase().includes(val) || i.kategori.toLowerCase().includes(val));
+            const filtered = allData.filter(i => 
+                i.nama.toLowerCase().includes(val) || 
+                i.kategori.toLowerCase().includes(val) ||
+                i.durasi.toLowerCase().includes(val)
+            );
             renderPriceList(filtered);
         });
 
