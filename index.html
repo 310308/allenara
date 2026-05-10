@@ -9,38 +9,39 @@
     <style>
         body { 
             font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: #29262B; /* Warna Ungu Gelap (Latar Belakang) */
-            color: #FAF5FF; /* Warna Teks Utama (Hampir Putih) */
+            background-color: #D5C5C8; /* Pale Slate - Background Utama */
+            color: #604D53; /* Taupe Grey - Teks Utama */
         }
         .glass-card {
-            background: #3C3541; /* Warna Ungu Menengah (Warna Kotak Utama) */
+            background: #FDF1F2; /* Soft Blush - Kotak Utama */
             border-radius: 40px;
-            box-shadow: 0 10px 40px rgba(172, 95, 219, 0.2); /* Shadow Ungu Cerah */
-            border: 1px solid #AC5FDB; /* Border Ungu Cerah */
+            box-shadow: 0 15px 35px rgba(96, 77, 83, 0.1);
+            border: 2px solid #FFDBDA; /* Soft Blush Border */
         }
         .btn-link {
-            background: #AC5FDB; /* Warna Ungu Cerah (Tombol) */
+            background: #DB7F8E; /* Old Rose - Warna Tombol */
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             color: white;
             border: 1px solid transparent;
         }
         .btn-link:hover {
             transform: translateY(-3px) scale(1.02);
-            background: #E3A2EE; /* Warna Ungu Pastel Muda saat Hover */
-            color: #29262B; /* Teks jadi Gelap saat Hover biar kebaca */
-            box-shadow: 0 5px 15px rgba(227, 162, 238, 0.4);
+            background: #FFDBDA; /* Soft Blush saat hover */
+            color: #DB7F8E; /* Teks jadi Old Rose saat hover */
+            box-shadow: 0 8px 20px rgba(219, 127, 142, 0.2);
         }
         .profile-img {
             width: 100px;
             height: 100px;
-            background: #FAF5FF;
+            background: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto;
             overflow: hidden;
-            border: 4px solid #E3A2EE; /* Border Ungu Pastel Muda di foto */
+            border: 4px solid #DB7F8E; /* Border Old Rose di foto */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
     </style>
 </head>
@@ -51,42 +52,42 @@
             <img src="https://i.imgur.com/f9ZpEzM.jpeg" alt="Logo" class="w-full h-full object-cover">
         </div>
 
-        <h1 class="text-3xl font-extrabold mb-2 tracking-tighter relative z-10">Allenara Store</h1>
-        <p class="text-[11px] font-bold text-[#E3A2EE] uppercase tracking-[0.2em] mb-8 px-4 opacity-90 relative z-10">
+        <h1 class="text-3xl font-extrabold mb-2 tracking-tighter relative z-10 text-[#604D53]">Allenara Store</h1>
+        <p class="text-[11px] font-bold text-[#DB7F8E] uppercase tracking-[0.2em] mb-8 px-4 opacity-90 relative z-10">
             Premium Digital • Established 2022
         </p>
 
         <div class="space-y-4 mb-12 relative z-10">
             <a href="pricelist.html" class="btn-link flex items-center justify-between p-4 rounded-3xl shadow-lg">
-                <span class="bg-[#FAF5FF] p-2.5 rounded-2xl shadow-inner">🎀</span>
-                <span class="font-bold flex-1 px-4 text-left">Pricelist Aplikasi Premium</span>
+                <span class="bg-white p-2.5 rounded-2xl shadow-inner text-xl">🎀</span>
+                <span class="font-bold flex-1 px-4 text-left uppercase text-[12px] tracking-wide">Pricelist Aplikasi Premium</span>
                 <span class="text-2xl font-black">›</span>
             </a>
             
             <a href="#" class="btn-link flex items-center justify-between p-4 rounded-3xl shadow-lg">
-                <span class="bg-[#FAF5FF] p-2.5 rounded-2xl shadow-inner">🎮</span>
-                <span class="font-bold flex-1 px-4 text-left">Pricelist Game Needs</span>
+                <span class="bg-white p-2.5 rounded-2xl shadow-inner text-xl">🎮</span>
+                <span class="font-bold flex-1 px-4 text-left uppercase text-[12px] tracking-wide">Pricelist Game Needs</span>
                 <span class="text-2xl font-black">›</span>
             </a>
 
             <a href="#" class="btn-link flex items-center justify-between p-4 rounded-3xl shadow-lg">
-                <span class="bg-[#FAF5FF] p-2.5 rounded-2xl shadow-inner">📱</span>
-                <span class="font-bold flex-1 px-4 text-left">Social Media Booster</span>
+                <span class="bg-white p-2.5 rounded-2xl shadow-inner text-xl">📱</span>
+                <span class="font-bold flex-1 px-4 text-left uppercase text-[12px] tracking-wide">Social Media Booster</span>
                 <span class="text-2xl font-black">›</span>
             </a>
         </div>
 
-        <div class="flex justify-center gap-7 pt-6 border-t border-[#AC5FDB] relative z-10">
-            <a href="https://wa.me/6285117211408" target="_blank" class="text-3xl hover:scale-125 transition-transform filter drop-shadow-xl">💬</a>
-            <a href="https://instagram.com/ciinjamons" target="_blank" class="text-3xl hover:scale-125 transition-transform filter drop-shadow-xl">📸</a>
-            <a href="https://t.me/Perdunggu" target="_blank" class="text-3xl hover:scale-125 transition-transform filter drop-shadow-xl">✈️</a>
+        <div class="flex justify-center gap-7 pt-6 border-t border-[#FFDBDA] relative z-10">
+            <a href="https://wa.me/6285117211408" target="_blank" class="text-3xl hover:scale-125 transition-transform filter drop-shadow-sm">💬</a>
+            <a href="https://instagram.com/ciinjamons" target="_blank" class="text-3xl hover:scale-125 transition-transform filter drop-shadow-sm">📸</a>
+            <a href="https://t.me/Perdunggu" target="_blank" class="text-3xl hover:scale-125 transition-transform filter drop-shadow-sm">✈️</a>
             <a href="https://x.com/Perdunggu" target="_blank" class="text-2xl hover:scale-125 transition-transform filter drop-shadow-sm">🐦</a>
         </div>
         
-        <p class="text-[9px] text-[#AC5FDB] mt-8 uppercase tracking-[0.3em] font-black relative z-10">All Rights Reserved Allenara Store</p>
+        <p class="text-[9px] text-[#9DA3A4] mt-8 uppercase tracking-[0.3em] font-black relative z-10">All Rights Reserved Allenara Store</p>
     
-        <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-[#E3A2EE] rounded-full blur-[80px] opacity-20"></div>
-        <div class="absolute -top-20 -right-20 w-40 h-40 bg-[#AC5FDB] rounded-full blur-[80px] opacity-20"></div>
+        <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-[#FFDBDA] rounded-full blur-[80px] opacity-40"></div>
+        <div class="absolute -top-20 -right-20 w-40 h-40 bg-[#DB7F8E] rounded-full blur-[80px] opacity-20"></div>
     </div>
 
 </body>
